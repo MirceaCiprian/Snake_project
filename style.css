@@ -1,0 +1,15 @@
+.square
+{
+    width: 20px;
+    height: 20px;
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+.squaresnake
+{
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    text-align: center;
+}
