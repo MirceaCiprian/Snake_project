@@ -13,44 +13,41 @@ let direction = "uninitialized";
 let flag = 0;
 // Add event listener on keydown
 
-    document.addEventListener('keydown', (event) => {
-        var name = event.key;
-        var code = event.code;
-
-        // Alert the key name and key code on keydown
-        // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-        if(!locked) {
-            switch(event.key) {
-                case("ArrowUp"):
-                    if(direction != "up" && direction != "down") {
-                        direction = "up";
-                    }
-                    // moveSnakeUp();
-                    break;
-                case("ArrowDown"):
-                if(direction != "up" && direction != "down") {
-                    direction = "down";
-                    }
-                    // moveSnakeDown();
-                    break;
-                case("ArrowLeft"):
-                if(direction != "left" && direction != "right") {
-                    direction = "left";
-                    }
-                    // moveSnakeLeft();
-                    break;
-                case("ArrowRight"):
-                if(direction != "left" && direction != "right") {
-                    direction = "right";
-                }
-                    // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-                    // moveSnakeRight();
-                    break;
-                default:
-                    break;
+document.addEventListener('keydown', (event) => {
+    var name = event.key;
+    var code = event.code;
+    // Alert the key name and key code on keydown
+    // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+    if(!locked) {
+        switch(event.key) {
+        case("ArrowUp"):
+            if(direction != "up" && direction != "down") {
+                direction = "up";
             }
+            break;
+        case("ArrowDown"):
+            if(direction != "up" && direction != "down") {
+                direction = "down";
+                }
+                break;
+        case("ArrowLeft"):
+            if(direction != "left" && direction != "right") {
+                direction = "left";
+                }
+                break;
+        case("ArrowRight"):
+            if(direction != "left" && direction != "right") {
+            direction = "right";
+            }
+            // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+            break;
+        default:
+            break;
         }
-    }, false);
+        /* Move snake when you press the key */
+        // moveSnake(direction);
+    }
+}, false);
 
 function generateTable() {
     let cell = 0;
@@ -81,54 +78,21 @@ function generateTable() {
 }
 
 var intervalId = window.setInterval(function() {
-    switch(direction) {
-        case("left"):
-            moveSnakeLeft();
-            break;
-        case("right"):
-            moveSnakeRight();
-            break;
-        case("up"):
-            moveSnakeUp();
-            break;
-        case("down"):
-            moveSnakeDown();
-            break;
-        default:
-            break;
-    }
+    if(direction != "uninitialized")
+        moveSnake(direction);
 }, 600);
 
-function moveSnakeDown() {
-    headX++;
-    if(headX < lower_bound && array[headX][headY] != 1) {
-        coordinatesX.push(headX);
-        coordinatesY.push(headY);
-        if(array[headX][headY] == -1) {
-            array[headX][headY] = 1;
-            flag = 1;
-            updateScore();
-        }        
-        else {
-            array[coordinatesX.shift()][coordinatesY.shift()] = 7;
-        }
-        for(i = 0; i < coordinatesX.length; i++) {
-            array[coordinatesX[i]][coordinatesY[i]] = 1;
-        }
-        if(flag) {
-            generateFood();
-            flag = 0;
-        }
-        updateView();
-    }
-    else {
-        gameLost();
-    }
-}
+function moveSnake(direction) {
+    if(direction == "up")
+        headX--;
+    if(direction == "down")
+        headX++;
+    if(direction == "left")
+        headY--;    
+    if(direction == "right")
+        headY++;
 
-function moveSnakeUp() {
-    headX--;
-    if(headX >= 0 && array[headX][headY] != 1) {
+    if((0 <= headX) && (headX < lower_bound) && (0 <= headY) && (headY < right_bound) && (array[headX][headY] != 1)) {
         coordinatesX.push(headX);
         coordinatesY.push(headY);
         if(array[headX][headY] == -1) {
@@ -136,59 +100,6 @@ function moveSnakeUp() {
             flag = 1;
             updateScore();
         }
-        else {
-            array[coordinatesX.shift()][coordinatesY.shift()] = 7;
-        }
-        for(i = 0; i < coordinatesX.length; i++) {
-            array[coordinatesX[i]][coordinatesY[i]] = 1;
-        }
-        if(flag) {
-            generateFood();
-            flag = 0;
-        }
-        updateView();
-    }
-    else {
-        gameLost();
-    }
-}
-function moveSnakeLeft() {
-    headY--;
-    if(headY >= 0 && array[headX][headY] != 1) {
-        coordinatesX.push(headX);
-        coordinatesY.push(headY);
-        if(array[headX][headY] == -1) {
-            array[headX][headY] = 1;
-            flag = 1;
-            updateScore();
-        }
-        else {
-            array[coordinatesX.shift()][coordinatesY.shift()] = 7;
-        }
-        for(i = 0; i < coordinatesX.length; i++) {
-            array[coordinatesX[i]][coordinatesY[i]] = 1;
-        }
-        if(flag) {
-            generateFood();
-            flag = 0;
-        }
-        updateView();
-    }
-    else {
-        gameLost();
-    }
-}
-
-function moveSnakeRight() {
-    headY++;
-    if(headY < right_bound && array[headX][headY] != 1) {
-        coordinatesX.push(headX);
-        coordinatesY.push(headY);
-        if(array[headX][headY] == -1) {
-            array[headX][headY] = 1;
-            flag = 1;
-            updateScore();
-        }   
         else {
             array[coordinatesX.shift()][coordinatesY.shift()] = 7;
         }
