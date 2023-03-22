@@ -11,43 +11,47 @@ let headX;
 let headY;
 let direction = "uninitialized";
 let flag = 0;
-// Add event listener on keydown
 
-document.addEventListener('keydown', (event) => {
-    var name = event.key;
-    var code = event.code;
-    // Alert the key name and key code on keydown
-    // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-    if(!locked) {
-        switch(event.key) {
-        case("ArrowUp"):
-            if(direction != "up" && direction != "down") {
-                direction = "up";
+// Add event listener on keydown
+document.addEventListener(
+    'keydown',
+    (event) => {
+        var name = event.key;
+        var code = event.code;
+        // Alert the key name and key code on keydown
+        // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+        if(!locked) {
+            switch(event.key) {
+                case("ArrowUp"):
+                    if(direction != "up" && direction != "down") {
+                        direction = "up";
+                    }
+                    break;
+                case("ArrowDown"):
+                    if(direction != "up" && direction != "down") {
+                        direction = "down";
+                        }
+                        break;
+                case("ArrowLeft"):
+                    if(direction != "left" && direction != "right") {
+                        direction = "left";
+                        }
+                        break;
+                case("ArrowRight"):
+                    if(direction != "left" && direction != "right") {
+                    direction = "right";
+                    }
+                    // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+                    break;
+                default:
+                    break;
             }
-            break;
-        case("ArrowDown"):
-            if(direction != "up" && direction != "down") {
-                direction = "down";
-                }
-                break;
-        case("ArrowLeft"):
-            if(direction != "left" && direction != "right") {
-                direction = "left";
-                }
-                break;
-        case("ArrowRight"):
-            if(direction != "left" && direction != "right") {
-            direction = "right";
-            }
-            // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-            break;
-        default:
-            break;
+            /* Move snake when you press the key */
+            // moveSnake(direction);
         }
-        /* Move snake when you press the key */
-        // moveSnake(direction);
-    }
-}, false);
+    },
+    false
+);
 
 function generateTable() {
     let cell = 0;
@@ -83,7 +87,7 @@ var intervalId = window.setInterval(function() {
 }, 600);
 
 function moveSnake(direction) {
-    if(direction == "up")
+    if(direction == "up") 
         headX--;
     if(direction == "down")
         headX++;
@@ -128,7 +132,6 @@ function setInitialPosition() {
 /* update the movement of the Snake*/
 function updateView() {
     let index;
-
     for(let i = 0; i < no_cells; i++) {
         for(let j = 0; j < no_cells; j++) {
             index = i * no_cells + j;

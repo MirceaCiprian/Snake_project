@@ -14,25 +14,29 @@
   </head>
   <body>
     <container>
-        <div class="header" id="title">
-            <center>
-                <div> <h3>Snake</h3> </div>
-                <div><button id="startButton" type="button" class="btn btn-primary" onclick="generateTable()">START GAME</button>
-                </div>
-                <br>
-                <div id="settingsCells">
-                  <input id="cellsInput" min="4" max="30" value="4" class="col-xs-4" class="form-control" placeholder="Grid size between 4 -> 30">
-                </div>
-                <div id="score">Score: 0 </div>
-            </center>
-            <br>
-        </div>
+      <div class="header" id="title">
         <center>
-        <div class="game">
-            <table id="table">
-            </table>
-        </div>
+          <div>
+            <h3>Snake</h3>
+          </div>
+          <div>
+            <button id="startButton" type="button" class="btn btn-primary" onclick="generateTable()">START GAME</button>
+          </div>
+          <br>
+          <div id="settingsCells">
+            <input id="cellsInput" min="4" max="30" value="4" class="col-xs-4" class="form-control" placeholder="Grid size between 4 -> 30">
+          </div>
+          <div id="score">Score: 0 </div>
         </center>
+        <br>
+      </div>
+      <div>
+        <center>
+          <div class="game">
+            <table id="table"></table>
+          </div>
+        </center>
+      </div>  
     </container>
   </body>
 </html>
