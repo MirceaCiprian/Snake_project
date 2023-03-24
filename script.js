@@ -30,16 +30,16 @@ document.addEventListener(
                 case("ArrowDown"):
                     if(direction != "up" && direction != "down") {
                         direction = "down";
-                        }
-                        break;
+                    }
+                    break;
                 case("ArrowLeft"):
                     if(direction != "left" && direction != "right") {
                         direction = "left";
-                        }
-                        break;
+                    }
+                    break;
                 case("ArrowRight"):
                     if(direction != "left" && direction != "right") {
-                    direction = "right";
+                        direction = "right";
                     }
                     // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
                     break;
